@@ -59,12 +59,12 @@ cat << "EOF"
 EOF
 echo -e "${NC}"
 
-# Dr. Abhishek YouTube promotion with spinner
+
 
 (sleep 3) & spinner $!
 
 # Fetch zone and region
-print_header "Fetching Google Cloud Configuration"
+print_header "Anmol Gour"
 print_info "Getting zone, region, and project details..."
 ZONE=$(gcloud compute project-info describe \
   --format="value(commonInstanceMetadata.items[google-compute-default-zone])" 2>/dev/null)
