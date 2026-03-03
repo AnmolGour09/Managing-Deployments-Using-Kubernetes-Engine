@@ -1,20 +1,10 @@
+
+
+
+
 #!/bin/bash
 
-
-# Color Variables
-CYAN_TEXT="\033[0;36m"
-BOLD_TEXT="\033[1m"
-RESET_FORMAT="\033[0m"
-
-# Welcome message
-echo -e "${CYAN_TEXT}${BOLD_TEXT}==================================================================${RESET_FORMAT}"
-echo -e "${CYAN_TEXT}${BOLD_TEXT}                             Anmol Gour                           ${RESET_FORMAT}"
-echo -e "${CYAN_TEXT}${BOLD_TEXT}==================================================================${RESET_FORMAT}"
-echo
-
-
-
-
+# Fetch zone and region
 ZONE=$(gcloud compute project-info describe \
   --format="value(commonInstanceMetadata.items[google-compute-default-zone])")
 REGION=$(gcloud compute project-info describe \
@@ -98,12 +88,3 @@ kubectl create -f deployments/hello-green.yaml
 curl -ks https://`kubectl get svc frontend -o=jsonpath="{.status.loadBalancer.ingress[0].ip}"`/version
 
 kubectl apply -f services/hello-green.yaml
-
-
-# Final message
-echo
-echo -e "${CYAN_TEXT}${BOLD_TEXT}=======================================================${RESET_FORMAT}"
-echo -e "${CYAN_TEXT}${BOLD_TEXT}              LAB COMPLETED SUCCESSFULLY!              ${RESET_FORMAT}"
-echo -e "${CYAN_TEXT}${BOLD_TEXT}=======================================================${RESET_FORMAT}"
-echo
-
