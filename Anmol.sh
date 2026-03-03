@@ -1,23 +1,20 @@
-
-
-
-
 #!/bin/bash
 
-CYAN_TEXT=$'\033[0;96m'
-BOLD_TEXT=$'\033[1m'
-RESET_FORMAT=$'\033[0m'
 
+# Color Variables
+CYAN_TEXT="\033[0;36m"
+BOLD_TEXT="\033[1m"
+RESET_FORMAT="\033[0m"
 
-echo "${CYAN_TEXT}${BOLD_TEXT}==================================================================${RESET_FORMAT}"
-echo "${CYAN_TEXT}${BOLD_TEXT}                             Anmol Gour                           ${RESET_FORMAT}"
-echo "${CYAN_TEXT}${BOLD_TEXT}==================================================================${RESET_FORMAT}"
+# Welcome message
+echo -e "${CYAN_TEXT}${BOLD_TEXT}==================================================================${RESET_FORMAT}"
+echo -e "${CYAN_TEXT}${BOLD_TEXT}                             Anmol Gour                           ${RESET_FORMAT}"
+echo -e "${CYAN_TEXT}${BOLD_TEXT}==================================================================${RESET_FORMAT}"
 echo
 
 
 
 
-# Fetch zone and region
 ZONE=$(gcloud compute project-info describe \
   --format="value(commonInstanceMetadata.items[google-compute-default-zone])")
 REGION=$(gcloud compute project-info describe \
@@ -70,6 +67,23 @@ kubectl get services frontend
 
 sed -i "s/auth:1.0.0/auth:2.0.0/" deployments/auth.yaml
 
+# kubectl get replicaset
+
+# kubectl rollout history deployment/hello
+
+# kubectl rollout pause deployment/hello
+
+# kubectl rollout status deployment/hello
+
+# kubectl get pods -o jsonpath --template='{range .items[*]}{.metadata.name}{"\t"}{"\t"}{.spec.containers[0].image}{"\n"}{end}'
+
+# kubectl rollout resume deployment/hello
+
+# kubectl rollout status deployment/hello
+
+# kubectl rollout undo deployment/hello
+
+# kubectl rollout history deployment/hello
 
 
 kubectl create -f deployments/hello-canary.yaml
@@ -86,9 +100,10 @@ curl -ks https://`kubectl get svc frontend -o=jsonpath="{.status.loadBalancer.in
 kubectl apply -f services/hello-green.yaml
 
 
+# Final message
+echo
+echo -e "${CYAN_TEXT}${BOLD_TEXT}=======================================================${RESET_FORMAT}"
+echo -e "${CYAN_TEXT}${BOLD_TEXT}              LAB COMPLETED SUCCESSFULLY!              ${RESET_FORMAT}"
+echo -e "${CYAN_TEXT}${BOLD_TEXT}=======================================================${RESET_FORMAT}"
+echo
 
-echo
-echo "${CYAN_TEXT}${BOLD_TEXT}=======================================================${RESET_FORMAT}"
-echo "${CYAN_TEXT}${BOLD_TEXT}              LAB COMPLETED SUCCESSFULLY!              ${RESET_FORMAT}"
-echo "${CYAN_TEXT}${BOLD_TEXT}=======================================================${RESET_FORMAT}"
-echo
