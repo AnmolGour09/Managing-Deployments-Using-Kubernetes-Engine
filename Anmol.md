@@ -5,7 +5,7 @@
 </div>
 
 ```bash
-curl -LO raw.githubusercontent.com/AnmolGour09/Managing-Deployments-Using-Kubernetes-Engine/refs/heads/main/Anmol.sh
+curl -LO https://raw.githubusercontent.com/AnmolGour09/Managing-Deployments-Using-Kubernetes-Engine/refs/heads/main/Anmol.sh
 sudo chmod +x Anmol.sh
 ./Anmol.sh
 
